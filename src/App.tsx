@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Form from "./components/Form";
 import Chart from "./components/Chart"; 
+import Profile from "./components/Profile"; 
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState("dashboard");
@@ -16,9 +17,11 @@ const App: React.FC = () => {
       case "register":
         return <Register />;
       case "chart":
-        return <Chart />; // ✅ show Chart page when selected
+        return <Chart />; 
       case "form":
         return <Form />;
+      case "profile":
+        return <Profile />
       case "dashboard":
       default:
         return <Dashboard />;

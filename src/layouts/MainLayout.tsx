@@ -11,7 +11,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, onNavigate }) => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Topbar always on top */}
-      <Topbar />
+      <Topbar onNavigate={onNavigate}/>
 
       {/* Main area: Sidebar + Content */}
       <div className="flex flex-1">
@@ -20,8 +20,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, onNavigate }) => {
 
         {/* Main content */}
         <main className="flex-1 p-4">{children}</main>
+
+        
       </div>
     </div>
+    
   );
 };
 
