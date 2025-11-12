@@ -42,7 +42,7 @@ const RegistrationForm: React.FC = () => {
       {currentPage === 1 && (
         <div className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-800">Sign Up</h1>
+            <h1 className="text-3xl font-bold text-gray-800">Register</h1>
             <p className="text-gray-600 mt-2">Step 1 of 2 - Personal Details</p>
           </div>
 
@@ -82,7 +82,7 @@ const RegistrationForm: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="john@example.com"
+                placeholder="alex@example.com"
               />
             </div>
 
@@ -95,7 +95,7 @@ const RegistrationForm: React.FC = () => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="+1 234 567 8900"
+                placeholder="+9736757384"
               />
             </div>
 

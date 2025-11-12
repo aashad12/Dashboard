@@ -72,7 +72,7 @@ const ContactForm: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-sm text-gray-500">Office</p>
-                    <p className="font-medium text-gray-800">123 Main St, New York</p>
+                    <p className="font-medium text-gray-800">Tinkune, Kathmandu</p>
                   </div>
                 </div>
               </div>
@@ -80,9 +80,9 @@ const ContactForm: React.FC = () => {
 
             <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg p-6 text-white">
               <h4 className="font-semibold mb-2">Working Hours</h4>
-              <p className="text-sm text-blue-100">Monday - Friday: 9:00 AM - 6:00 PM</p>
-              <p className="text-sm text-blue-100">Saturday: 10:00 AM - 4:00 PM</p>
-              <p className="text-sm text-blue-100">Sunday: Closed</p>
+              <p className="text-sm text-blue-100">Sunday - Friday: 7:00 AM - 6:00 PM</p>
+              <p className="text-sm text-blue-100">Saturday: Closed</p>
+              
             </div>
           </div>
 
@@ -96,7 +96,7 @@ const ContactForm: React.FC = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="John Doe"
+                  placeholder="Alex Doe"
                 />
               </div>
 
@@ -107,7 +107,7 @@ const ContactForm: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="john@example.com"
+                  placeholder="Alex@example.com"
                 />
               </div>
 

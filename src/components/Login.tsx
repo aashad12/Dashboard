@@ -21,7 +21,7 @@ const Login: React.FC = () => {
             Welcome Back 👋
           </h2>
           <p className="text-sm text-gray-500 text-center mb-8">
-            Please sign in to your Filiuck Pay account
+            Please sign in to your  account
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
