@@ -22,7 +22,7 @@ const App: React.FC = () => {
         return <Form />;
       case "profile":
         return <Profile />
-      case "dashboard":
+     
       default:
         return <Dashboard />;
     }
@@ -31,7 +31,9 @@ const App: React.FC = () => {
   return (
     <MainLayout onNavigate={setCurrentPage}>
       {renderPage()}
+      
     </MainLayout>
+    
   );
 };
 

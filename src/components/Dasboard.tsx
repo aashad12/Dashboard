@@ -1,106 +1,164 @@
-
+import React, { useState } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
 
 const Dashboard = () => {
-  const stats = [
-    { title: "Total Users", value: "1,240" },
-    { title: "Monthly Sales", value: "$5,670" },
-    { title: "Active Projects", value: "18" },
-    { title: "Pending Orders", value: "12" },
-    { title: "Support Tickets", value: "7" },
+  // ================= Revenue + Pie Data =================
+  const data = [
+    { name: "Jan", revenue: 10000 },
+    { name: "Feb", revenue: 15000 },
+    { name: "Mar", revenue: 20000 },
+    { name: "Apr", revenue: 25000 },
+    { name: "May", revenue: 23000 },
+    { name: "Jun", revenue: 28000 },
+    { name: "Jul", revenue: 18000 },
   ];
 
-  const recentActivities = [
-    { user: "John", action: "registered", time: "2h ago" },
-    { user: "Anna", action: "completed a sale", time: "3h ago" },
-    { user: "Server", action: "maintenance scheduled", time: "5h ago" },
-    { user: "Admin", action: "updated system settings", time: "1d ago" },
+  const pieData = [
+    { name: "Male", value: 6500 },
+    { name: "Female", value: 6098 },
   ];
 
-  const recentSales = [
-    { id: 101, product: "Laptop", customer: "Alice", amount: "$1,200", status: "Completed" },
-    { id: 102, product: "Headphones", customer: "Bob", amount: "$150", status: "Pending" },
-    { id: 103, product: "Smartphone", customer: "Charlie", amount: "$700", status: "Completed" },
-  ];
+  const COLORS = ["#6366F1", "#EC4899"];
 
+  // ================= Work List (To-Do List) =================
+  const [tasks, setTasks] = useState<string[]>([
+    "Prepare monthly sales report",
+    "Check inventory update",
+    "Schedule team meeting",
+  ]);
+  const [newTask, setNewTask] = useState("");
+
+  const addTask = () => {
+    if (newTask.trim() !== "") {
+      setTasks([...tasks, newTask]);
+      setNewTask("");
+    }
+  };
+
+  const removeTask = (index: number) => {
+    const updated = tasks.filter((_, i) => i !== index);
+    setTasks(updated);
+  };
+
+  // ================== UI ==================
   return (
-    <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-      {/* ===== Stats Cards ===== */}
-      {stats.map((item, idx) => (
-        <div
-          key={idx}
-          className="bg-white p-5 rounded-xl shadow hover:shadow-lg transition"
-        >
-          <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-          <p className="text-3xl font-bold text-cyan-600">{item.value}</p>
-        </div>
-      ))}
+    <div className="p-6 bg-gray-50 min-h-screen space-y-6">
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { title: "Today's Revenue", value: "$34,482" },
+          { title: "Today's Orders", value: "108" },
+          { title: "Average Customers", value: "238" },
+          { title: "Average Revenue", value: "$42,088" },
+        ].map((card, index) => (
+          <div
+            key={index}
+            className="bg-white shadow-md rounded-xl p-5 hover:shadow-lg transition"
+          >
+            <h3 className="text-gray-500 text-sm">{card.title}</h3>
+            <p className="text-2xl font-bold text-indigo-600 mt-2">
+              {card.value}
+            </p>
+          </div>
+        ))}
+      </div>
 
-      {/* ===== Revenue Chart Section ===== */}
-      <div className="md:col-span-2 bg-white p-6 rounded-xl shadow">
-        <h3 className="text-lg font-semibold mb-3">Revenue Chart</h3>
-        <div className="h-64 flex items-center justify-center text-gray-400 border-2 border-dashed rounded-lg">
-          Chart Placeholder
+      {/* Chart + Info */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Line Chart */}
+        <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
+          <h3 className="font-semibold mb-4">Revenue Overview (2025)</h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={data}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="revenue"
+                stroke="#6366F1"
+                strokeWidth={3}
+                dot={{ r: 4 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Pie Chart */}
+        <div className="bg-white p-6 rounded-xl shadow-md text-center">
+          <h3 className="font-semibold mb-4">Customers Info</h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+          <p className="text-sm text-gray-500">12,598 Customers</p>
         </div>
       </div>
 
-      {/* ===== Recent Activity Section ===== */}
-      <div className="bg-white p-6 rounded-xl shadow">
-        <h3 className="text-lg font-semibold mb-3">Recent Activity</h3>
-        <ul className="space-y-3 text-sm text-gray-600">
-          {recentActivities.map((act, idx) => (
-            <li key={idx}>
-              <span className="font-semibold">{act.user}</span> {act.action} <span className="text-gray-400">({act.time})</span>
+      {/* Work List Section */}
+      <div className="bg-white p-6 rounded-xl shadow-md">
+        <h3 className="font-semibold mb-4">Work List / To-Do List</h3>
+
+        {/* Add Task */}
+        <div className="flex items-center gap-3 mb-4">
+          <input
+            type="text"
+            placeholder="Add a new task..."
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            className="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-indigo-400 outline-none"
+          />
+          <button
+            onClick={addTask}
+            className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+          >
+            Add
+          </button>
+        </div>
+
+        {/* Task List */}
+        <ul className="space-y-2">
+          {tasks.map((task, index) => (
+            <li
+              key={index}
+              className="flex justify-between items-center border border-gray-200 rounded-lg px-3 py-2 hover:bg-indigo-50"
+            >
+              <span>{task}</span>
+              <button
+                onClick={() => removeTask(index)}
+                className="text-red-500 text-sm hover:text-red-700"
+              >
+                Remove
+              </button>
             </li>
           ))}
         </ul>
-      </div>
-
-      {/* ===== Tasks Section ===== */}
-      <div className="bg-white p-6 rounded-xl shadow">
-        <h3 className="text-lg font-semibold mb-3">Tasks / To-Do</h3>
-        <ul className="space-y-2 text-sm">
-          <li className="flex justify-between items-center bg-gray-100 p-2 rounded">
-            <span>Finish monthly report</span>
-            <span className="text-xs text-gray-500">Due: Today</span>
-          </li>
-          <li className="flex justify-between items-center bg-gray-100 p-2 rounded">
-            <span>Update project documentation</span>
-            <span className="text-xs text-gray-500">Due: Tomorrow</span>
-          </li>
-          <li className="flex justify-between items-center bg-gray-100 p-2 rounded">
-            <span>Review support tickets</span>
-            <span className="text-xs text-gray-500">Due: 2d</span>
-          </li>
-        </ul>
-      </div>
-
-      {/* ===== Recent Sales Table ===== */}
-      <div className="md:col-span-3 bg-white p-6 rounded-xl shadow overflow-x-auto">
-        <h3 className="text-lg font-semibold mb-3">Recent Sales</h3>
-        <table className="w-full text-left text-sm">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-4 py-2">Order ID</th>
-              <th className="px-4 py-2">Product</th>
-              <th className="px-4 py-2">Customer</th>
-              <th className="px-4 py-2">Amount</th>
-              <th className="px-4 py-2">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentSales.map((sale) => (
-              <tr key={sale.id} className="border-b">
-                <td className="px-4 py-2">{sale.id}</td>
-                <td className="px-4 py-2">{sale.product}</td>
-                <td className="px-4 py-2">{sale.customer}</td>
-                <td className="px-4 py-2">{sale.amount}</td>
-                <td className={`px-4 py-2 font-semibold ${sale.status === "Completed" ? "text-green-600" : "text-yellow-600"}`}>
-                  {sale.status}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
     </div>
   );

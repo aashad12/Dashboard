@@ -1,6 +1,11 @@
 
 import userPhoto from "../assets/profile.svg"; 
 
+
+interface TopbarProps {
+  onNavigate: (page: string) => void;
+}
+
 const Topbar: React.FC<TopbarProps> = ({ onNavigate }) => {
   return (
     <div className="bg-white shadow-xl z-10 px-6 py-3 flex justify-between items-center">
@@ -13,7 +18,7 @@ const Topbar: React.FC<TopbarProps> = ({ onNavigate }) => {
           className="border rounded-md px-3 py-1 text-sm"
         />
         
-        <a href="/profile.tsx">
+        
           <img
           src={userPhoto}
           alt="User-photo"
@@ -21,7 +26,7 @@ const Topbar: React.FC<TopbarProps> = ({ onNavigate }) => {
           onClick={() => onNavigate("profile")}
           className="w-9 h-9 rounded-full object-cover"
         />
-        </a>
+        
       </div>
     </div>
   );
