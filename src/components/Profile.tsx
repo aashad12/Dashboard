@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import profile from "../assets/profile.svg"
 
 interface ProfileData {
   firstName: string;
@@ -24,8 +25,7 @@ const ProfilePage: React.FC = () => {
     country: 'United Kingdom',
     city: 'Leeds, East London',
     postalCode: 'ERT 1254',
-    profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop'
-  });
+    profileImage:profile,  });
 
   return (
     <div className="min-h-screen bg-gray-50 p-8">
