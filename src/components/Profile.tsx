@@ -10,21 +10,22 @@ interface ProfileData {
   userRole: string;
   country: string;
   city: string;
-  postalCode: string;
+  location : string;
+  
   profileImage: string;
 }
 
 const ProfilePage: React.FC = () => {
   const [profileData] = useState<ProfileData>({
-    firstName: 'Natashia',
-    lastName: 'Khaleira',
-    dateOfBirth: '12-10-1990',
-    email: 'info@binary-fusion.com',
-    phone: '(+62) 821 2554-5846',
+    firstName: 'Aasra',
+    lastName: 'Dangol',
+    dateOfBirth: '12-11-2005',
+    email: 'aasradangol@gmail.com',
+    phone: '976543210',
     userRole: 'Admin',
-    country: 'United Kingdom',
-    city: 'Leeds, East London',
-    postalCode: 'ERT 1254',
+    country: 'Nepal',
+    city: 'Kathmandu',
+    location:"Thamel",
     profileImage:profile,  });
 
   return (
@@ -68,7 +69,7 @@ const ProfilePage: React.FC = () => {
         <div className="bg-white rounded-2xl shadow-sm p-8 mb-6">
           <div className="flex justify-between items-center mb-8">
             <h3 className="text-xl font-semibold text-gray-800">Personal Information</h3>
-            <button className="bg-orange-500 text-white px-6 py-2.5 rounded-lg hover:bg-orange-600 transition flex items-center gap-2">
+            <button className="bg-indigo-600 text-white px-6 py-2.5 rounded-lg hover:bg-indigo-900 transition flex items-center gap-2">
               <span>Edit</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -144,8 +145,8 @@ const ProfilePage: React.FC = () => {
 
             {/* Postal Code */}
             <div>
-              <label className="block text-gray-500 text-sm mb-2">Postal Code</label>
-              <p className="text-gray-800 font-medium text-lg">{profileData.postalCode}</p>
+              <label className="block text-gray-500 text-sm mb-2">Location</label>
+              <p className="text-gray-800 font-medium text-lg">{profileData.location}</p>
             </div>
           </div>
         </div>
